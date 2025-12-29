@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Search, ShoppingCart, User, Menu, Heart, MapPin, ChevronDown, X } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, Heart, MapPin, ChevronDown, X, LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +7,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -14,6 +15,7 @@ import { useCart } from "@/lib/cart";
 import { categories } from "@/lib/data";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 export function Header() {
   const { getTotalItems } = useCart();
@@ -22,12 +24,18 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, isAdmin, signOut } = useAuth();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
     }
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
   };
 
   return (
@@ -74,6 +82,22 @@ export function Header() {
               </div>
               <nav className="flex-1 overflow-auto p-4">
                 <div className="space-y-1">
+                  {user ? (
+                    <div className="px-3 py-2 mb-4 bg-muted rounded-lg">
+                      <p className="font-medium">{user.email}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {isAdmin ? "Admin" : "Customer"}
+                      </p>
+                    </div>
+                  ) : (
+                    <Link
+                      to="/auth"
+                      className="block px-3 py-2 rounded-lg bg-primary text-primary-foreground font-medium mb-4"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Login / Sign Up
+                    </Link>
+                  )}
                   <Link
                     to="/"
                     className="block px-3 py-2 rounded-lg hover:bg-muted font-medium"
@@ -88,6 +112,15 @@ export function Header() {
                   >
                     🔥 Flash Deals
                   </Link>
+                  {isAdmin && (
+                    <Link
+                      to="/admin"
+                      className="block px-3 py-2 rounded-lg hover:bg-muted font-medium"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      ⚙️ Admin Panel
+                    </Link>
+                  )}
                   <div className="pt-4 pb-2 px-3 text-sm font-semibold text-muted-foreground">
                     Categories
                   </div>
@@ -102,6 +135,18 @@ export function Header() {
                       <span>{category.name}</span>
                     </Link>
                   ))}
+                  {user && (
+                    <button
+                      className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted text-destructive mt-4"
+                      onClick={() => {
+                        handleSignOut();
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <LogOut className="h-5 w-5" />
+                      Sign Out
+                    </button>
+                  )}
                 </div>
               </nav>
             </div>
@@ -170,9 +215,61 @@ export function Header() {
             <Heart className="h-5 w-5" />
           </Button>
           
-          <Button variant="ghost" size="icon" className="hidden md:flex">
-            <User className="h-5 w-5" />
-          </Button>
+          {/* User Menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="hidden md:flex">
+                <User className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              {user ? (
+                <>
+                  <div className="px-3 py-2">
+                    <p className="font-medium truncate">{user.email}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {isAdmin ? "Admin Account" : "Customer Account"}
+                    </p>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/orders" className="cursor-pointer">
+                      My Orders
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/wishlist" className="cursor-pointer">
+                      Wishlist
+                    </Link>
+                  </DropdownMenuItem>
+                  {isAdmin && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link to="/admin" className="cursor-pointer">
+                          <Settings className="mr-2 h-4 w-4" />
+                          Admin Panel
+                        </Link>
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut} className="text-destructive cursor-pointer">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                <>
+                  <DropdownMenuItem asChild>
+                    <Link to="/auth" className="cursor-pointer">
+                      Login / Sign Up
+                    </Link>
+                  </DropdownMenuItem>
+                </>
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <Link to="/cart">
             <Button variant="ghost" size="icon" className="relative">
