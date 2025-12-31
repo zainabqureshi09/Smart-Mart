@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { Star, Heart, ShoppingCart, Truck, Shield, ArrowLeft, Share2, BadgeCheck, Minus, Plus } from "lucide-react";
+import { Star, Heart, ShoppingCart, Truck, Shield, ArrowLeft, Share2, BadgeCheck, Minus, Plus, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -81,8 +81,8 @@ export default function ProductDetail() {
                   </Badge>
                 )}
                 {product.isBestPrice && (
-                  <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground">
-                    🏆 Best Price
+                  <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground flex items-center gap-1">
+                    <Trophy className="h-3 w-3" /> Best Price
                   </Badge>
                 )}
               </div>

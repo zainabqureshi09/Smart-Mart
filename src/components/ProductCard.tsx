@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Star, Heart, ShoppingCart, Eye, BadgeCheck } from "lucide-react";
+import { Star, Heart, ShoppingCart, Eye, BadgeCheck, Zap } from "lucide-react";
 import { Product, formatPrice, calculateDiscount } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -114,8 +114,8 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
             </Badge>
           )}
           {product.isFlashDeal && (
-            <Badge className="gradient-deal text-primary-foreground">
-              🔥 Flash Deal
+            <Badge className="gradient-deal text-primary-foreground flex items-center gap-1">
+              <Zap className="h-3 w-3" /> Flash Deal
             </Badge>
           )}
         </div>

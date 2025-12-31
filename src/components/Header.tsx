@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Search, ShoppingCart, User, Menu, Heart, MapPin, ChevronDown, X, LogOut, Settings } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, Heart, MapPin, ChevronDown, X, LogOut, Settings, Zap, Truck, Cookie, Candy, Sandwich, Coffee, Snowflake, ShoppingBasket, Sparkles, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart";
 import { categories } from "@/lib/data";
+import { CategoryIcon } from "@/components/CategoryIcon";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
@@ -48,7 +49,10 @@ export function Header() {
               <MapPin className="h-3 w-3" />
               Deliver to: Karachi, Pakistan
             </span>
-            <span>🔥 Free delivery on orders over Rs. 2,000</span>
+            <span className="flex items-center gap-1">
+              <Truck className="h-3 w-3" />
+              Free delivery on orders over Rs. 2,000
+            </span>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/seller" className="hover:underline">
@@ -110,7 +114,7 @@ export function Header() {
                     className="block px-3 py-2 rounded-lg hover:bg-muted font-medium text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    🔥 Flash Deals
+                    <Zap className="h-4 w-4" /> Flash Deals
                   </Link>
                   {isAdmin && (
                     <Link
@@ -118,7 +122,7 @@ export function Header() {
                       className="block px-3 py-2 rounded-lg hover:bg-muted font-medium"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      ⚙️ Admin Panel
+                      <Settings className="h-4 w-4" /> Admin Panel
                     </Link>
                   )}
                   <div className="pt-4 pb-2 px-3 text-sm font-semibold text-muted-foreground">
@@ -131,7 +135,7 @@ export function Header() {
                       className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <span className="text-xl">{category.icon}</span>
+                      <CategoryIcon icon={category.icon} className="h-5 w-5 text-muted-foreground" />
                       <span>{category.name}</span>
                     </Link>
                   ))}
@@ -175,7 +179,7 @@ export function Header() {
                   to={`/category/${category.slug}`}
                   className="flex items-center gap-3 cursor-pointer"
                 >
-                  <span className="text-xl">{category.icon}</span>
+                  <CategoryIcon icon={category.icon} className="h-5 w-5 text-primary" />
                   <div className="flex-1">
                     <div className="font-medium">{category.name}</div>
                     <div className="text-xs text-muted-foreground">
@@ -291,7 +295,7 @@ export function Header() {
             to="/deals"
             className="text-sm font-medium text-primary hover:underline whitespace-nowrap flex items-center gap-1"
           >
-            🔥 Flash Deals
+            <Zap className="h-4 w-4" /> Flash Deals
           </Link>
           {categories.slice(0, 6).map((category) => (
             <Link
