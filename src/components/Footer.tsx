@@ -157,7 +157,7 @@ export function Footer() {
         <div className="container py-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-background/60">
-              © 2024 Smart Mart. All rights reserved. Made with ❤️ in Pakistan
+              © 2024 Smart Mart. All rights reserved. Made in Pakistan
             </div>
             <div className="flex items-center gap-4 text-sm text-background/60">
               <Link to="/privacy" className="hover:text-primary">Privacy Policy</Link>
