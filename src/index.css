@@ -8,7 +8,7 @@
 
 @layer base {
   :root {
-    /* Core Colors - Vibrant Orange & Green for Pakistani Market */
+    /* Core Colors - Professional Red primary with Green secondary */
     --background: 0 0% 99%;
     --foreground: 222 47% 11%;
 
@@ -18,8 +18,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Primary - Vibrant Orange (Trust & Energy) */
-    --primary: 24 95% 53%;
+    /* Primary - Professional Red */
+    --primary: 0 72% 51%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary - Fresh Green (Deals & Savings) */
@@ -38,7 +38,7 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 24 95% 53%;
+    --ring: 0 72% 51%;
 
     --radius: 0.75rem;
 
@@ -53,31 +53,31 @@
     --info-foreground: 0 0% 100%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(38 95% 50%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(0 72% 51%) 0%, hsl(355 70% 45%) 100%);
     --gradient-secondary: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(158 64% 52%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(340 82% 52%) 100%);
-    --gradient-deal: linear-gradient(135deg, hsl(340 82% 52%) 0%, hsl(24 95% 53%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(0 72% 51%) 0%, hsl(340 82% 52%) 100%);
+    --gradient-deal: linear-gradient(135deg, hsl(340 82% 52%) 0%, hsl(0 72% 51%) 100%);
 
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
     --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
     --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
     --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
-    --shadow-glow: 0 0 20px hsl(24 95% 53% / 0.3);
+    --shadow-glow: 0 0 20px hsl(0 72% 51% / 0.3);
     --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.1), 0 4px 12px -4px hsl(0 0% 0% / 0.08);
 
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 24 95% 53%;
+    --sidebar-primary: 0 72% 51%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 14% 96%;
     --sidebar-accent-foreground: 222 47% 11%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 24 95% 53%;
+    --sidebar-ring: 0 72% 51%;
 
     /* Charts */
-    --chart-1: 24 95% 53%;
+    --chart-1: 0 72% 51%;
     --chart-2: 142 76% 36%;
     --chart-3: 221 83% 53%;
     --chart-4: 340 82% 52%;
@@ -94,7 +94,7 @@
     --popover: 222 47% 9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 24 95% 53%;
+    --primary: 0 72% 51%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 142 71% 45%;
@@ -111,7 +111,7 @@
 
     --border: 223 47% 15%;
     --input: 223 47% 15%;
-    --ring: 24 95% 53%;
+    --ring: 0 72% 51%;
 
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
@@ -124,14 +124,14 @@
 
     --sidebar-background: 222 47% 6%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 24 95% 53%;
+    --sidebar-primary: 0 72% 51%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 223 47% 15%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 223 47% 15%;
-    --sidebar-ring: 24 95% 53%;
+    --sidebar-ring: 0 72% 51%;
 
-    --chart-1: 24 95% 53%;
+    --chart-1: 0 72% 51%;
     --chart-2: 142 71% 45%;
     --chart-3: 221 83% 53%;
     --chart-4: 340 82% 52%;
@@ -208,8 +208,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px hsl(24 95% 53% / 0.3); }
-  50% { box-shadow: 0 0 40px hsl(24 95% 53% / 0.5); }
+  0%, 100% { box-shadow: 0 0 20px hsl(0 72% 51% / 0.3); }
+  50% { box-shadow: 0 0 40px hsl(0 72% 51% / 0.5); }
 }
 
 @keyframes slide-up {
