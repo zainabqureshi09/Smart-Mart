@@ -1,66 +1,103 @@
-# Smart Mart
+# Smart Mart (Next.js + Supabase + Tailwind + shadcn/ui)
 
-## Project info
+Smart Mart is a modern e‑commerce frontend built with Next.js App Router, Tailwind CSS, shadcn/ui, and Supabase. The project uses a professional red as the primary brand color and green as secondary/success across components.
 
-This project is a React + Vite + Tailwind + shadcn-ui storefront called Smart Mart.
+## Tech Stack
+- Next.js (App Router, SSR)
+- Supabase (Database, Auth)
+- Tailwind CSS + shadcn/ui
+- TypeScript
 
-## How can I edit this code?
+## Project Structure
+- app/
+  - layout.tsx: Root layout and global styles
+  - page.tsx: Home page
+  - globals.css: Tailwind + imported design tokens
+- src/
+  - components/: UI and app components
+  - lib/
+    - supabase/
+      - client.ts: Browser Supabase client
+      - server.ts: Server Supabase client (SSR)
+  - hooks/, pages/, etc. (migrated incrementally as needed)
+- middleware.ts: Ensures auth session is refreshed (Supabase)
+- tailwind.config.ts: Tailwind configuration and theme tokens wiring
+- next.config.mjs: Next configuration
 
-There are several ways of editing your application.
+## Environment Variables
+Create a file named `.env.local` in the project root:
 
-Local development
+```
+NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_PROJECT_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+```
 
-**Use your preferred IDE**
+Optionally, include other variables as you expand features (e.g., third‑party APIs).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Getting Started (Local Dev)
+1) Install dependencies
 
-Follow these steps:
+```
+npm install
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2) Copy environment template and fill values
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```
+cp .env.local.example .env.local
+# edit .env.local with your Supabase URL and anon key
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3) Run the dev server
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```
 npm run dev
 ```
 
-Edit a file directly in GitHub
+Open http://localhost:3000 in your browser.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Supabase Integration
+This project uses `@supabase/auth-helpers-nextjs` to manage auth across server and client:
+- `middleware.ts` refreshes the session on navigation.
+- `src/lib/supabase/server.ts` provides a server client for SSR/route handlers.
+- `src/lib/supabase/client.ts` provides a browser client for client components.
 
-Use GitHub Codespaces
+Note: The `@supabase/auth-helpers-nextjs` package is currently marked deprecated upstream in favor of `@supabase/ssr`. If you prefer the newer package, we can switch to `@supabase/ssr` with minimal changes.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Styling and Design Tokens
+Tailwind is configured to read styles from `app/**/*.{ts,tsx}` and `src/**/*.{ts,tsx}`. Global CSS includes reusable design tokens:
+- Primary: professional red
+- Secondary/Success: green
+- Accent: deep blue
+- Utilities: gradient helpers, glow shadows, charts palette
 
-## What technologies are used for this project?
+You can find tokens and CSS utilities in `src/index.css` and they’re imported by `app/globals.css`.
 
-This project is built with:
+## Scripts
+- `npm run dev` — Start Next.js dev server
+- `npm run build` — Build for production
+- `npm run start` — Start production server
+- `npm run lint` — Lint with Next.js ESLint config
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Deployment (Vercel)
+This project is Vercel‑ready out of the box. Steps:
+1) Push your repository to GitHub/GitLab/Bitbucket.
+2) Import the repo into Vercel.
+3) Set the environment variables (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`).
+4) Deploy — Vercel will detect Next.js and build automatically.
 
-## How can I deploy this project?
+## Migration Notes (from Vite + React)
+- Routing is now handled by the App Router under `app/`.
+- The previous Tailwind tokens were kept and imported into Next via `app/globals.css`.
+- Supabase client initialization has been split into server and browser helpers for SSR.
+- Vite configs and scripts have been replaced with Next.js equivalents.
 
-You can deploy this project to any static host (Vercel, Netlify, Cloudflare Pages) using the dist/ output from npm run build.
+## Roadmap / Next Steps
+- Migrate remaining routes/pages from `src/pages` into `app/` segments.
+- Introduce protected routes for user dashboards using SSR and middleware.
+- Add route‑level code‑splitting patterns and tuning if needed.
+- Replace placeholder OpenGraph/Twitter images with branded assets.
+- Optional: Switch from `@supabase/auth-helpers-nextjs` to `@supabase/ssr` to align with upstream.
 
-## Can I connect a custom domain?
-
-Yes, you can!
-
-Point your domain to your hosting provider following their instructions.
-
+## License
+Proprietary — All rights reserved.

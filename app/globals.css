@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import existing design tokens and utilities */
+@import "../src/index.css";
