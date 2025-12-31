@@ -1,14 +1,45 @@
 {
-  "files": [],
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true,
     "strict": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"], "react-router-dom": ["./src/compat/router.tsx"] }
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "react-router-dom": [
+        "./src/compat/router.tsx"
+      ]
+    },
+    "incremental": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowJs": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
