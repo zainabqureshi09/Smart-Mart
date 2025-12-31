@@ -1,3 +1,4 @@
+"use client";
 import { Link } from "react-router-dom";
 import { SlidersHorizontal, Grid3X3, LayoutList } from "lucide-react";
 import { Header } from "@/components/Header";

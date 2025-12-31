@@ -1,3 +1,4 @@
+"use client";
 import { Link } from "react-router-dom";
 import { ArrowRight, Zap, TrendingUp, Star, Timer, Percent } from "lucide-react";
 import { Button } from "@/components/ui/button";

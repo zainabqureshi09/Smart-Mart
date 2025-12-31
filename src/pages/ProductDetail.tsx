@@ -1,3 +1,4 @@
+"use client";
 import { useParams, Link } from "react-router-dom";
 import { Star, Heart, ShoppingCart, Truck, Shield, ArrowLeft, Share2, BadgeCheck, Minus, Plus, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";

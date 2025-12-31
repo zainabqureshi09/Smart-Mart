@@ -9,6 +9,6 @@
     "strict": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] }
+    "paths": { "@/*": ["./src/*"], "react-router-dom": ["./src/compat/router.tsx"] }
   },
 }
