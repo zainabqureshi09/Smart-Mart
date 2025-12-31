@@ -1,103 +1,218 @@
-# Smart Mart (Next.js + Supabase + Tailwind + shadcn/ui)
+# PakSmart Mart
 
-Smart Mart is a modern e‑commerce frontend built with Next.js App Router, Tailwind CSS, shadcn/ui, and Supabase. The project uses a professional red as the primary brand color and green as secondary/success across components.
+PakSmart Mart is a modern e-commerce marketplace platform built for Pakistan, featuring a comprehensive shopping experience with product browsing, cart management, wishlist, admin panel, and seller portal. The platform is built with Next.js App Router, React Router, Supabase, Tailwind CSS, and shadcn/ui.
 
-## Tech Stack
-- Next.js (App Router, SSR)
-- Supabase (Database, Auth)
-- Tailwind CSS + shadcn/ui
-- TypeScript
+## 🚀 Features
 
-## Project Structure
-- app/
-  - layout.tsx: Root layout and global styles
-  - page.tsx: Home page
-  - globals.css: Tailwind + imported design tokens
-- src/
-  - components/: UI and app components
-  - lib/
-    - supabase/
-      - client.ts: Browser Supabase client
-      - server.ts: Server Supabase client (SSR)
-  - hooks/, pages/, etc. (migrated incrementally as needed)
-- middleware.ts: Ensures auth session is refreshed (Supabase)
-- tailwind.config.ts: Tailwind configuration and theme tokens wiring
-- next.config.mjs: Next configuration
+- **Product Management**: Browse products by categories, search functionality, product details
+- **Shopping Cart**: Add to cart, manage quantities, checkout process
+- **Wishlist**: Save favorite products for later
+- **User Authentication**: Secure authentication with Supabase Auth
+- **Admin Panel**: Manage products, categories, and platform settings
+- **Seller Portal**: Dedicated portal for sellers to manage their products
+- **Order Tracking**: Track order status and delivery
+- **Flash Deals**: Time-limited deals and promotions
+- **Categories**: Organized product categories with subcategories
+- **Responsive Design**: Mobile-first responsive design
 
-## Environment Variables
-Create a file named `.env.local` in the project root:
+## 🛠️ Tech Stack
 
-```
-NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_PROJECT_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
-```
+- **Framework**: Next.js 15 (App Router) + React Router (legacy pages)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui components
+- **Backend**: Supabase (Database, Authentication, Real-time)
+- **State Management**: Zustand, React Query (TanStack Query)
+- **Form Handling**: React Hook Form + Zod validation
+- **Notifications**: Sonner (Toast notifications)
+- **Icons**: Lucide React
+- **Charts**: Recharts
 
-Optionally, include other variables as you expand features (e.g., third‑party APIs).
-
-## Getting Started (Local Dev)
-1) Install dependencies
+## 📁 Project Structure
 
 ```
-npm install
+paksmart-mart/
+├── app/                          # Next.js App Router
+│   ├── auth/                     # Authentication pages
+│   ├── cart/                     # Shopping cart page
+│   ├── product/[id]/             # Product detail pages
+│   ├── products/                 # Products listing
+│   ├── layout.tsx                # Root layout
+│   ├── page.tsx                  # Home page
+│   └── globals.css               # Global styles
+├── src/
+│   ├── components/               # React components
+│   │   ├── admin/                # Admin components
+│   │   ├── ui/                   # shadcn/ui components
+│   │   ├── Header.tsx            # Site header
+│   │   ├── Footer.tsx            # Site footer
+│   │   ├── ProductCard.tsx       # Product card component
+│   │   └── CategoryCard.tsx      # Category card component
+│   ├── pages/                    # React Router pages
+│   │   ├── Index.tsx             # Home page
+│   │   ├── Products.tsx          # Products page
+│   │   ├── ProductDetail.tsx     # Product detail
+│   │   ├── Cart.tsx              # Shopping cart
+│   │   ├── Wishlist.tsx          # Wishlist
+│   │   ├── Admin.tsx              # Admin panel
+│   │   ├── SellerPortal.tsx      # Seller portal
+│   │   ├── Orders.tsx            # Order management
+│   │   ├── TrackOrder.tsx        # Order tracking
+│   │   └── ...                   # Other pages
+│   ├── hooks/                    # Custom React hooks
+│   │   ├── useAuth.tsx           # Authentication hook
+│   │   └── use-mobile.tsx        # Mobile detection
+│   ├── lib/                      # Utilities and helpers
+│   │   ├── supabase/             # Supabase clients
+│   │   │   ├── client.ts         # Browser client
+│   │   │   └── server.ts         # Server client (SSR)
+│   │   ├── cart.ts               # Cart management
+│   │   ├── data.ts               # Mock data and utilities
+│   │   └── utils.ts              # General utilities
+│   ├── integrations/             # Third-party integrations
+│   │   └── supabase/             # Supabase integration
+│   ├── App.tsx                   # React Router setup
+│   └── main.tsx                  # React entry point
+├── middleware.ts                 # Next.js middleware (auth)
+├── tailwind.config.ts            # Tailwind configuration
+├── next.config.mjs               # Next.js configuration
+└── components.json               # shadcn/ui configuration
 ```
 
-2) Copy environment template and fill values
+## 🔧 Environment Variables
 
-```
-cp .env.local.example .env.local
-# edit .env.local with your Supabase URL and anon key
-```
+Create a `.env.local` file in the project root:
 
-3) Run the dev server
-
-```
-npm run dev
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-Open http://localhost:3000 in your browser.
+## 🚦 Getting Started
 
-## Supabase Integration
-This project uses `@supabase/auth-helpers-nextjs` to manage auth across server and client:
-- `middleware.ts` refreshes the session on navigation.
-- `src/lib/supabase/server.ts` provides a server client for SSR/route handlers.
-- `src/lib/supabase/client.ts` provides a browser client for client components.
+### Prerequisites
 
-Note: The `@supabase/auth-helpers-nextjs` package is currently marked deprecated upstream in favor of `@supabase/ssr`. If you prefer the newer package, we can switch to `@supabase/ssr` with minimal changes.
+- Node.js 18+ and npm/yarn/pnpm
+- Supabase account and project
 
-## Styling and Design Tokens
-Tailwind is configured to read styles from `app/**/*.{ts,tsx}` and `src/**/*.{ts,tsx}`. Global CSS includes reusable design tokens:
-- Primary: professional red
-- Secondary/Success: green
-- Accent: deep blue
-- Utilities: gradient helpers, glow shadows, charts palette
+### Installation
 
-You can find tokens and CSS utilities in `src/index.css` and they’re imported by `app/globals.css`.
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd paksmart-mart
+   ```
 
-## Scripts
-- `npm run dev` — Start Next.js dev server
-- `npm run build` — Build for production
-- `npm run start` — Start production server
-- `npm run lint` — Lint with Next.js ESLint config
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## Deployment (Vercel)
-This project is Vercel‑ready out of the box. Steps:
-1) Push your repository to GitHub/GitLab/Bitbucket.
-2) Import the repo into Vercel.
-3) Set the environment variables (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`).
-4) Deploy — Vercel will detect Next.js and build automatically.
+3. **Set up environment variables**
+   ```bash
+   # Create .env.local file
+   cp .env.local.example .env.local
+   # Edit .env.local with your Supabase credentials
+   ```
 
-## Migration Notes (from Vite + React)
-- Routing is now handled by the App Router under `app/`.
-- The previous Tailwind tokens were kept and imported into Next via `app/globals.css`.
-- Supabase client initialization has been split into server and browser helpers for SSR.
-- Vite configs and scripts have been replaced with Next.js equivalents.
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-## Roadmap / Next Steps
-- Migrate remaining routes/pages from `src/pages` into `app/` segments.
-- Introduce protected routes for user dashboards using SSR and middleware.
-- Add route‑level code‑splitting patterns and tuning if needed.
-- Replace placeholder OpenGraph/Twitter images with branded assets.
-- Optional: Switch from `@supabase/auth-helpers-nextjs` to `@supabase/ssr` to align with upstream.
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-## License
+## 📜 Available Scripts
+
+- `npm run dev` - Start Next.js development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🗄️ Database Setup
+
+The project uses Supabase for database and authentication. Make sure to:
+
+1. Set up your Supabase project
+2. Run the migrations from `supabase/migrations/`
+3. Configure authentication providers in Supabase dashboard
+4. Set up the required tables:
+   - `products`
+   - `categories`
+   - `cart`
+   - `wishlist`
+   - `orders`
+   - `users`
+
+## 🎨 Styling
+
+The project uses Tailwind CSS with custom design tokens:
+- **Primary Color**: Professional red
+- **Secondary/Success**: Green
+- **Accent**: Deep blue
+- Custom gradients, shadows, and utilities
+
+Global styles are defined in `src/index.css` and imported via `app/globals.css`.
+
+## 🔐 Authentication
+
+Authentication is handled by Supabase Auth:
+- Email/password authentication
+- Session management via middleware
+- Protected routes for admin and seller portals
+- User roles and permissions
+
+## 🛣️ Routing
+
+The project uses a hybrid routing approach:
+- **Next.js App Router**: New routes in `app/` directory
+- **React Router**: Legacy routes in `src/pages/` (being migrated)
+
+## 📦 Key Dependencies
+
+- `next` - Next.js framework
+- `react` & `react-dom` - React library
+- `@supabase/supabase-js` - Supabase client
+- `@supabase/auth-helpers-nextjs` - Supabase auth helpers
+- `@tanstack/react-query` - Data fetching and caching
+- `react-router-dom` - Client-side routing
+- `tailwindcss` - Utility-first CSS
+- `zustand` - State management
+- `sonner` - Toast notifications
+- `lucide-react` - Icon library
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push your repository to GitHub/GitLab/Bitbucket
+2. Import the repository into Vercel
+3. Set environment variables in Vercel dashboard
+4. Deploy - Vercel will auto-detect Next.js
+
+### Other Platforms
+
+The project can be deployed to any platform that supports Next.js:
+- Netlify
+- AWS Amplify
+- Railway
+- DigitalOcean App Platform
+
+## 📝 Notes
+
+- The project is in a hybrid state with both Next.js App Router and React Router
+- Migration from React Router to Next.js App Router is ongoing
+- Some pages still use React Router (`src/pages/`)
+- New features should use Next.js App Router (`app/`)
+
+## 🔄 Migration Status
+
+- ✅ Next.js App Router setup
+- ✅ Supabase integration
+- ✅ Authentication system
+- ✅ Basic pages migrated
+- 🔄 Remaining pages migration in progress
+
+## 📄 License
+
 Proprietary — All rights reserved.
