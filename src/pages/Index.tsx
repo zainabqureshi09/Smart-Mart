@@ -20,7 +20,7 @@ export default function Index() {
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-6 animate-slide-up">
                 <Badge className="bg-background/20 text-primary-foreground border-0 text-sm px-4 py-1">
-                  🎉 Pakistan's #1 Marketplace
+                  Pakistan's #1 Marketplace
                 </Badge>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
                   Shop Smart,
