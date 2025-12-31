@@ -56,7 +56,7 @@ export default function SellerPortal() {
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [registering, setRegistering] = useState(false);
 
   useEffect(() => {
@@ -65,6 +65,7 @@ export default function SellerPortal() {
     } else if (user) {
       checkSellerRole();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading, navigate]);
 
   const checkSellerRole = async () => {
@@ -354,7 +355,7 @@ export default function SellerPortal() {
 
 // Seller-specific product form that auto-sets seller_id
 function SellerProductForm({ product, sellerId, onSuccess, onCancel }: {
-  product?: any;
+  product?: Product;
   sellerId: string;
   onSuccess: () => void;
   onCancel: () => void;
