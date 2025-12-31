@@ -173,7 +173,7 @@ The project uses a hybrid routing approach:
 - `next` - Next.js framework
 - `react` & `react-dom` - React library
 - `@supabase/supabase-js` - Supabase client
-- `@supabase/auth-helpers-nextjs` - Supabase auth helpers
+- `@supabase/ssr` - Supabase SSR helpers (replaces deprecated auth-helpers)
 - `@tanstack/react-query` - Data fetching and caching
 - `react-router-dom` - Client-side routing
 - `tailwindcss` - Utility-first CSS
